@@ -1,0 +1,36 @@
+version: "3.11"
+
+services:
+  bot:
+    build: .
+    restart: always
+    working_dir: /aps
+    container_name: my_con
+    environment:
+      TOKEN: 6627535340:AAF9enhlOLvjV2tuDUDeySSZoNfX4Ln4Vvk
+      DATABASE: postgres
+      DB_USER: postgres
+      DB_HOST: pg
+      DB_PORT: 5432
+      DB_PASSWORD: 1
+    command: python3 main.py
+
+
+  pg:
+    image: postgres:15.3-alpine
+    restart: always
+    container_name: pg
+    environment:
+      - POSTGRES_PASSWORD=1
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg_data:
+
+
+
+
+
